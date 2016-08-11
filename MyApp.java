@@ -18,86 +18,102 @@ public class MyApp {
 		System.out.println("Welcome to Rock Paper Scissors!");
 		System.out.println("Please enter your name: ");
 		player1.setName(scan1.nextLine());
+		String choice = "yes";
 
-		// I want to set the human players name to whatever user input is
-		// Set.HumanPlayer.scan1.nextLine();
-		System.out.println("Would you like to play against random player or rock player?");
-		// I want to use the user input to determine which class I want to call
-		nameOpponent = scan1.nextLine();
+		while (choice.equalsIgnoreCase("yes")) {
 
-		System.out.println("Rock, Paper, or Scissors?");
-		player1.setRoshambo(scan1.nextLine());
-		player1.printNameAndChoice();
+			System.out.println("Would you like to play against random player or rock player?");
+			nameOpponent = scan1.nextLine();
 
-		while (nameOpponent.equalsIgnoreCase("rock player")) {
+			System.out.println("Rock, Paper, or Scissors?");
+			player1.setRoshambo(scan1.nextLine());
+			player1.printNameAndChoice();
 
-			player2.generateRoshambo();
-			player2.setName("the rock");
-			player2.printNameAndChoice();
+			while (nameOpponent.equalsIgnoreCase("rock player")) {
 
-			if (player1.getRoshambo().equalsIgnoreCase("rock"))
+				player2.generateRoshambo();
+				player2.setName("the rock");
+				player2.printNameAndChoice();
 
-			{
-				System.out.println("There has been a tie!");
+				if (player1.getRoshambo().equalsIgnoreCase("rock"))
+
+				{
+					System.out.println("There has been a tie!");
+				}
+
+				if (player1.getRoshambo().equalsIgnoreCase("paper")) {
+					System.out.println(player1.getName() + " has won!");
+
+				}
+
+				if (player1.getRoshambo().equalsIgnoreCase("scissors")) {
+					System.out.println(player2.getName() + " has won!");
+				}
+				nameOpponent = "karen";
+
 			}
 
-			if (player1.getRoshambo().equalsIgnoreCase("paper")) {
-				System.out.println(player1.getName() + " has won!");
+			while (nameOpponent.equalsIgnoreCase("random player")) { // generateroshumba.
 
-			}
+				player3.generateRoshambo();
+				player3.setName("the random player");
+				player3.printNameAndChoice();
 
-			if (player1.getRoshambo().equalsIgnoreCase("scissors")) {
-				System.out.println(player2.getName() + " has won!");
+				if (player1.getRoshambo().equalsIgnoreCase(player3.getRoshambo())) {
+					System.out.println("There has been a tie!");
+				}
+
+				humanPlayerRock(player1, player3);
+
+				humanPlayerPaper(player1, player3);
+
+				humanPlayerScissors(player1, player3);
+				nameOpponent = "karen";
+				// System.out.println(player1.getRoshambo());
+				// do something
+
+				System.out.println("Continue?");
+				choice = scan1.nextLine();
 			}
-			nameOpponent = "karen";
 
 		}
 
-		while (nameOpponent.equalsIgnoreCase("random player")) { // generateroshumba.
+	}
 
-			player3.generateRoshambo();
-			player3.setName("the random player");
-			player3.printNameAndChoice();
-
-			if (player1.getRoshambo().equalsIgnoreCase("rock")) {
-				if (player3.getRoshambo().equalsIgnoreCase("paper")) {
-					System.out.println(player3.getName() + " has won!");
-				}
-				if (player3.getRoshambo().equalsIgnoreCase("scissors")) {
-					System.out.println(player1.getName() + " has won!");
-				}
-				if (player3.getRoshambo().equalsIgnoreCase("rock")) {
-					System.out.println("There has been a tie!");
-				}
-			}
-			
-			if (player1.getRoshambo().equalsIgnoreCase("paper")) {
-				if (player3.getRoshambo().equalsIgnoreCase("paper")) {
-					System.out.println("There has been a tie!");
-				}
-				if (player3.getRoshambo().equalsIgnoreCase("scissors")) {
-					System.out.println(player3.getName() + " has won!");
-				}
-				if (player3.getRoshambo().equalsIgnoreCase("rock")) {
-					System.out.println(player1.getName() + " has won!");
-				}
+	public static void humanPlayerScissors(Player player1, Player player3) {
+		if (player1.getRoshambo().equalsIgnoreCase("scissors")) {
+			if (player3.getRoshambo().equalsIgnoreCase("paper")) {
+				System.out.println(player1.getName() + " has won!");
 			}
 
-			if (player1.getRoshambo().equalsIgnoreCase("scissors")) {
-				if (player3.getRoshambo().equalsIgnoreCase("paper")) {
-					System.out.println(player1.getName() + " has won!");
-				}
-				if (player3.getRoshambo().equalsIgnoreCase("scissors")) {
-					System.out.println("There has been a tie!");
-				}
-				if (player3.getRoshambo().equalsIgnoreCase("rock")) {
-					System.out.println(player3.getName() + " has won!");
-				
-				}
-			
+			if (player3.getRoshambo().equalsIgnoreCase("rock")) {
+				System.out.println(player3.getName() + " has won!");
+
 			}
-			nameOpponent = "karen";
-			// System.out.println(player1.getRoshambo());
+
+		}
+	}
+
+	public static void humanPlayerPaper(Player player1, Player player3) {
+		if (player1.getRoshambo().equalsIgnoreCase("paper")) {
+
+			if (player3.getRoshambo().equalsIgnoreCase("scissors")) {
+				System.out.println(player3.getName() + " has won!");
+			}
+			if (player3.getRoshambo().equalsIgnoreCase("rock")) {
+				System.out.println(player1.getName() + " has won!");
+			}
+		}
+	}
+
+	public static void humanPlayerRock(Player player1, Player player3) {
+		if (player1.getRoshambo().equalsIgnoreCase("rock")) {
+			if (player3.getRoshambo().equalsIgnoreCase("paper")) {
+				System.out.println(player3.getName() + " has won!");
+			}
+			if (player3.getRoshambo().equalsIgnoreCase("scissors")) {
+				System.out.println(player1.getName() + " has won!");
+			}
 
 		}
 	}
